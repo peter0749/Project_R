@@ -1,0 +1,163 @@
+
+	【經濟日報專訊】台灣第一銀行（下稱一銀）自動櫃員機（ATM）驚爆安全漏洞，旗下20家分行34台ATM疑遭黑客入侵，植入惡意程式（電腦病毒），令其自動吐鈔，在無卡之下盜走7,000萬新台幣（下同，折合約1,700萬港元），為當地金融史上首見的犯罪手法。
+台灣刑事局已與國際刑警科介入偵辦，初步鎖定3名疑犯，其中兩名俄羅斯籍疑犯已逃至香港。台警推測，事件背後應有國際級集團操控，7,000多萬元恐以地下<U+6ED9>兌方式<U+6ED9>往海外。
+疑遭植入惡意程式 鎖定3疑犯
+台灣金管會副主委桂先農說，一銀是在11日下午通報事件，該會要求所有損失需由一銀全數承擔。涉事ATM屬德利多富（Wincor）公司的同一款機型，目前全台有4,999台ATM與被盜領的ATM同型，佔全體ATM約20%。中華郵政昨午宣布，全台259台ATM暫停提款。
+台北市警察局大安分局指，兩名俄羅斯籍男子8日從台北桃園機場入境後，隨即租車前往台北市、新北市、台中市等多地犯案，另有一人開車接應。
+三人組犯案過程約5至10分鐘，交易皆集中在本月9日和10日。從片段所見，其中一人頭戴帽子、口罩到ATM領錢，另一人則負責把風。其中兩名俄羅斯疑犯11日早上歸還租來車輛後，到機場乘搭國泰航空往香港航班。
+警方表示，3名疑犯到台北古亭分行盜領現金時，遇到民眾也要領錢，因擔心事<U+8FF9>敗露匆忙逃走，因而在ATM旁留下散落的6萬多元現金，民眾見狀報警，警方通報一銀派人將現金帶回，事後一銀才回覆警方，銀行發生盜領事件。
+一銀：初步排除內鬼 400ATM停用
+一銀副總葉仲惠表示，10日時發現1家分行機器吐鈔有異常，初步排除內鬼的可能性，初步清查，全台共有34台ATM遭黑客入侵，共被盜約7,000萬元。
+葉仲惠指，疑犯在操作ATM過程中，沒有操作機器和卡片，是透過自動吐鈔的驅動程式，沒有經過帳務系統，所以銀行無法監控。
+一銀已暫停400台相關ATM機型，佔一銀ATM 763台的半數，昨日有不少民眾因未能提取現金而抱怨。一銀內部評估，至少要2至3天時間ATM才可恢復運作。
+台灣偵辦人員認為，由於涉案金額巨大，疑犯絕不可能夾帶闖關上飛機，恐怕台灣境內有接頭人，將錢透過地下<U+6ED9>兌的方式<U+6ED9>出台灣。
+更多經濟日報網站內容, 請登入hket.com
+新聞相關影音
+<U+00A0>來源：壹電視【若手機無法正常顯示，請點這裡收看】var LIGHTBOX_DARLA_CONFIG ={"useYAC":0,"usePE":0,"servicePath":"https://tw.news.yahoo.com/__darla/php/fc.php","xservicePath":"","beaconPath":"https://tw.news.yahoo.com/__darla/php/b.php","renderPath":"","allowFiF":false,"srenderPath":"https://s.yimg.com/rq/darla/2-9-9/html/r-sf.html","renderFile":"https://s.yimg.com/rq/darla/2-9-9/html/r-sf.html","sfbrenderPath":"https://s.yimg.com/rq/darla/2-9-9/html/r-sf.html","msgPath":"https://tw.news.yahoo.com/__darla/2-9-9/html/msg.html","cscPath":"https://s.yimg.com/rq/darla/2-9-9/html/r-csc.html","root":"__darla","edgeRoot":"https://s.yimg.com/rq/darla/2-9-9","sedgeRoot":"https://s.yimg.com/rq/darla/2-9-9","version":"2-9-9","tpbURI":"","hostFile":"https://s.yimg.com/rq/darla/2-9-9/js/g-r-min.js","beaconsDisabled":true,"rotationTimingDisabled":true}var t_MediaGalleryBobaSpotlight_start = new Date().getTime();
+        		
+                    
+                        Description Toggle
+                        
+                            
+                            
+                            
+                        
+                    
+                    
+                        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+        		
+        		    
+        		    View
+        		
+        	
+        
+                    
+                        
+                            1 - 15 / 15
+                        
+                        
+                        
+                    
+                
+                
+                    
+                        
+                            
+                    
+                    
+                        
+                            第一銀行ATM遭駭盜領案，台北市警方專案小組今天(13日)凌晨，取得疑似第3名涉案男子身揹鉅款的影像，警方懷疑他仍滯留台灣，繼續負責洗錢轉匯，現．．． 較多<U+00A0>第一銀行ATM遭駭盜領案，台北市警方專案小組今天(13日)凌晨，取得疑似第3名涉案男子身揹鉅款的影像，警方懷疑他仍滯留台灣，繼續負責洗錢轉匯，現正全面追緝中。 較少<U+00A0>
+                        
+                        
+                    
+                    
+                    	
+                            1 / 15
+                        
+                        
+                            今日新聞NOWnews
+                        
+                        
+                            2016年7月13日週三 台北標準時間下午12時36分
+                        
+                        
+                            Share to Facebook
+                            Share to Twitter
+                            Share to Pinterest
+                        
+                    
+                    
+                        Close
+                        Previous imageNext image
+                    
+                
+        
+        
+            var lightbox_ult_mid="spotlight_article_embedded1",lightbox_ult_mit="Article Body",lightbox_ult_site="news",lightbox_ult_region="TW",lightbox_ult_lang="zh-Hant-TW",lightbox_default_spaceid="2144404912";
+        var t_MediaGalleryBobaSpotlight_end = new Date().getTime();
+
+	
