@@ -18,6 +18,7 @@ library(topicmodels)  # ä¸»é?Œæ¨¡???
 library(igraph)       # ä¸»é?Œæ¨¡??‹é?œè¯
 
 orgPath = "./yahooText"
+Wordlen = 3
 text = Corpus(DirSource(orgPath), list(language = NA))
 text <- tm_map(text, removePunctuation)
 text <- tm_map(text, removeNumbers)
@@ -28,6 +29,7 @@ text <- tm_map(text, function(word)
 mixseg = worker()
 mat <- matrix( unlist(text), nrow=length(text) )
 totalSegment = data.frame()
+reducedSegment = data.frame()
 for( j in 1:length(text) )
 {
   for( i in 1:length(mat[j,]) )
@@ -36,19 +38,23 @@ for( j in 1:length(text) )
   }
   totalSegment = rbind(totalSegment, data.frame(result))
 }
+totalSegment$result = sort(totalSegment$result)
+reducedSegment = rbind(reducedSegment,data.frame(totalSegment$result[nchar(as.vector(totalSegment[,1]))>=Wordlen]))
+names(reducedSegment) = c("result")
 
-totaldiff = levels(totalSegment$result)
+totaldiff = levels(reducedSegment$result)
 countMat = data.frame(totaldiff, c(rep(0, length(totaldiff))))
-for( i in 1:length(totalSegment$result) )
+
+old = reducedSegment$result[1]
+j = 1
+for(i in 1:length(reducedSegment$result))
 {
-  for( j in 1:length(totaldiff) )
+  if(reducedSegment$result[i]!=old)
   {
-    if( totaldiff[j] == as.character(totalSegment$result[i]) && nchar(totaldiff[j])>=2 )
-    {
-      countMat[j,2] = countMat[j,2] + 1
-      break
-    }
+    j = j + 1
+    old = reducedSegment$result[i]
   }
+  countMat[j,2] = countMat[j,2] + 1
 }
 
 names(countMat) = c("totaldiff", "freq")
