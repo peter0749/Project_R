@@ -16,6 +16,7 @@ library(RColorBrewer)
 library(wordcloud)    # ??‡å?—é›²
 library(topicmodels)  # ä¸»é?Œæ¨¡???
 library(igraph)       # ä¸»é?Œæ¨¡??‹é?œè¯
+library(plyr)
 
 orgPath = "./yahooText"
 Wordlen = 3
@@ -38,27 +39,15 @@ for( j in 1:length(text) )
   }
   totalSegment = rbind(totalSegment, data.frame(result))
 }
-totalSegment$result = sort(totalSegment$result)
+
 reducedSegment = rbind(reducedSegment,data.frame(totalSegment$result[nchar(as.vector(totalSegment[,1]))>=Wordlen]))
 names(reducedSegment) = c("result")
 
-totaldiff = levels(reducedSegment$result)
-countMat = data.frame(totaldiff, c(rep(0, length(totaldiff))))
-
-old = reducedSegment$result[1]
-j = 1
-for(i in 1:length(reducedSegment$result))
-{
-  if(reducedSegment$result[i]!=old)
-  {
-    j = j + 1
-    old = reducedSegment$result[i]
-  }
-  countMat[j,2] = countMat[j,2] + 1
-}
-
+countMat = count(reducedSegment)
 names(countMat) = c("totaldiff", "freq")
-countMat[,2] = countMat[,2] / sum(countMat[,2])
+print(countMat)
+totaldiff = sum(countMat[,2])
+countMat[,2] = (countMat[,2] / sum(countMat[,2]))
 
 wordcloud(countMat$totaldiff, countMat$freq, min.freq = 1, random.order = F, ordered.colors = T, 
-          colors = rainbow(length(totaldiff)))
+          colors = rainbow(length(countMat$totaldiff)))
