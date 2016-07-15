@@ -29,5 +29,6 @@ for( i in 1:length(alldata$X))
     testframe = cbind(alldata[i,-1],testframe)
     fulldata = rbind(fulldata, testframe)
   }
-  write.csv(fulldata,"Fulllist.csv")
 }
+
+write.csv(fulldata,"Fulllist.csv")
