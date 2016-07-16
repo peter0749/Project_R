@@ -12,7 +12,7 @@ testvector = c()
 testframe = data.frame()
 
 
-for(i in 1:5)
+for(i in 1:7)
 {
   testurl = paste(yahoourl,i,appendurl,sep='')
   testexist = url.exists(testurl)
