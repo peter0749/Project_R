@@ -10,7 +10,7 @@ Sys.setlocale("LC_ALL", "cht")
 alldata = read.csv('Fulllist.csv')
 
 youtubeSRC = 'https://www.youtube.com/results?q='
-yAppendURL = '&sp=CAM%253D'
+yAppendURL = '%20trailer&sp=CAA%253D'
 youtubeURL = ''
 
 fulldata = data.frame()
