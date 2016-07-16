@@ -12,6 +12,16 @@ testurl = ""
 testvector = c()
 testframe = data.frame()
 
+myHttpheader<- c(
+  "User-Agent"="Chrome/51.0.2704.103",
+  "Accept"="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Connection"="keep-alive",
+  "Accept-Charset"="big5,GB2312,utf-8;q=0.7,*;q=0.7",
+  "Accept-Encoding"="gzip, deflate, sdch",
+  "Accept-Language"="zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4",
+  "Upgrade-Insecure-Requests"="1"
+)
+
 for(j in 1980:2016)
 {
   for(i in 1:10)
@@ -22,7 +32,7 @@ for(j in 1980:2016)
     print(testexist)
     if(testexist)
     {
-      html = getURL(testurl, ssl.verifypeer = FALSE, encoding='UTF-8')
+      html = getURL(testurl, ssl.verifypeer = FALSE, encoding='UTF-8', httpheader = myHttpheader)
       xml = htmlParse(html, encoding='UTF-8')
       path = xpathSApply(xml,'//table//td[2]/b/font[@size="2"]/a/@href',sessionEncoding='UTF-8')
       if(length(path)<1) break

@@ -11,6 +11,16 @@ alldata = read.csv('testcsv.csv')
 orgURL = 'http://www.boxofficemojo.com'
 fulldata = data.frame()
 
+myHttpheader<- c(
+  "User-Agent"="Chrome/51.0.2704.103",
+  "Accept"="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+  "Connection"="keep-alive",
+  "Accept-Charset"="big5,GB2312,utf-8;q=0.7,*;q=0.7",
+  "Accept-Encoding"="gzip, deflate, sdch",
+  "Accept-Language"="zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4",
+  "Upgrade-Insecure-Requests"="1"
+)
+
 for( i in 1:length(alldata$X))
 {
   yahooURL <- paste(orgURL, alldata$Path[i], sep='')
@@ -21,7 +31,7 @@ for( i in 1:length(alldata$X))
   print(URLExist)
   if(URLExist)
   {
-    html = getURL(yahooURL, ssl.verifypeer = FALSE, encoding='UTF-8')
+    html = getURL(yahooURL, ssl.verifypeer = FALSE, encoding='UTF-8', httpheader = myHttpheader)
     xml = htmlParse(html, encoding='UTF-8')
     text = xpathSApply(xml, '//tr[@bgcolor="#ffffff"]/td[@valign="top"]/b', sessionEncoding='UTF-8', xmlValue)
     if(length(text)<6) next
