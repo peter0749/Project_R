@@ -8,6 +8,8 @@ library(chron)
 
 Sys.setlocale("LC_ALL", "cht")
 
+alldata = read.csv("Fulllist.csv")
+
 youtubeSRC = 'https://www.youtube.com/results?q='
 yAppendURL = '%20trailer&sp=CAA%253D'
 youtubeURL = ''
@@ -16,11 +18,6 @@ fulldata = data.frame()
 
 myHttpheader<- c(
   "User-Agent"="Chrome/51.0.2704.103",
-  "Accept"="text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-  "Connection"="keep-alive",
-  "Accept-Charset"="big5,GB2312,utf-8;q=0.7,*;q=0.7",
-  "Accept-Encoding"="gzip, deflate, sdch",
-  "Accept-Language"="zh-TW,zh;q=0.8,en-US;q=0.6,en;q=0.4",
   "Upgrade-Insecure-Requests"="1"
 )
 
