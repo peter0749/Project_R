@@ -2,6 +2,6 @@ name: Movie_pred_GUI
 account: peter0749
 server: shinyapps.io
 appId: 116003
-bundleId: 512227
+bundleId: 512384
 url: https://peter0749.shinyapps.io/Movie_pred_GUI/
-when: 1469154278.86035
+when: 1469166439.57666

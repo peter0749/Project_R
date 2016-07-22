@@ -14,7 +14,7 @@ shinyServer(function(input, output) {
   output$Genre_rank <- renderPlot({
     h1 = t(data.frame(data.frame(table(test[[2]]$Genre[test[[2]]$Y==input$r_bins]))[2],
                       data.frame(table(test[[2]]$Genre[test[[2]]$svm.pred==input$r_bins]))[2]))
-    lbel = t(data.frame(table(test[[2]]$Genre[test[[2]]$Y==input$r_bins])))
+    lbel = t(data.frame(table(test[[2]]$Genre[test[[2]]$Y==input$r_bins]))[1])
     barplot(h1,
             names.arg = lbel,
             col=c('green','red'),
@@ -28,7 +28,7 @@ shinyServer(function(input, output) {
   output$Dist_rank <- renderPlot({
     h2 = t(data.frame(data.frame(table(test[[2]]$Distrubutor[test[[2]]$Y==input$r_bins]))[2],
                       data.frame(table(test[[2]]$Distrubutor[test[[2]]$svm.pred==input$r_bins]))[2]))
-    lbel = t(data.frame(table(test[[2]]$Distrubutor[test[[2]]$Y==input$r_bins])))
+    lbel = t(data.frame(table(test[[2]]$Distrubutor[test[[2]]$Y==input$r_bins]))[1])
     barplot(h2,
             names.arg = lbel,
             col=c('green','red'),
@@ -46,7 +46,7 @@ shinyServer(function(input, output) {
   output$Mon <- renderPlot({
     h2 = t(data.frame(data.frame(table(test[[2]]$Release.Date[test[[2]]$Y==input$r_bins]))[2],
                       data.frame(table(test[[2]]$Release.Date[test[[2]]$svm.pred==input$r_bins]))[2]))
-    lbel = t(data.frame(table(test[[2]]$Release.Date[test[[2]]$Y==input$r_bins])))
+    lbel = t(data.frame(table(test[[2]]$Release.Date[test[[2]]$Y==input$r_bins]))[1])
     barplot(h2,
             names.arg = lbel,
             col=c('green','red'),
@@ -64,7 +64,7 @@ shinyServer(function(input, output) {
   output$MPAA_rank <- renderPlot({
     h2 = t(data.frame(data.frame(table(test[[2]]$MPAA[test[[2]]$Y==input$r_bins]))[2],
                       data.frame(table(test[[2]]$MPAA[test[[2]]$svm.pred==input$r_bins]))[2]))
-    lbel = t(data.frame(table(test[[2]]$MPAA[test[[2]]$Y==input$r_bins])))
+    lbel = t(data.frame(table(test[[2]]$MPAA[test[[2]]$Y==input$r_bins]))[1])
     barplot(h2,
             names.arg = lbel,
             col=c('green','red'),
