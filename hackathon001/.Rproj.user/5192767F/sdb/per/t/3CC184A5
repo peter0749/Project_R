@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# This is the user-interface definition of a Shiny web application.\n# You can find out more about building applications with Shiny here:\n#\n# http://shiny.rstudio.com\n#\n\nshinyUI(navbarPage(\n  \"\\u53f0\\u7063104\\u5e74~105\\u5e74\\u7528\\u96fb\\u6982\\u6cc1\",\n  tabPanel(\"\\u5730\\u5340\\u7528\\u96fb\\u6982\\u6cc1\\u5716\",\n           sidebarLayout(\n             sidebarPanel(\n               checkboxGroupInput(\"checkType\", label = h3(\"\\u9078\\u53d6\\u6b32\\u8a08\\u7b97\\u985e\\u578b\"), \n                                  choices = (ch_type=chifun(regTypeLev)),\n                                  selected = ch_type[c(1,2,4)]\n               ),\n               selectInput(\"ZIPCODE\", label = h3(\"\\u9078\\u64c7\\u5340\\u57df\"), \n                           choices = (ch_zip = find_ZIPCODE(cordData)), \n                           selected = ch_zip[1]),\n               sliderInput(\"center_zoom\",\n                           \"\\u653e\\u5927\\u500d\\u7387\",\n                           min = 3,\n                           max = 21,\n                           value = 7\n               )\n             ),\n             mainPanel(\n               plotOutput(\"scatterMap\", width = \"100%\", height = 650),\n               plotOutput(\"denMap\", width = \"100%\", height = 650)\n             )\n           )\n  )\n)\n)",
+    "created" : 1470508367041.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2535191524",
+    "id" : "3CC184A5",
+    "lastKnownWriteTime" : 1470495486,
+    "last_content_update" : 1470495486,
+    "path" : "~/fuckYUTF8/hackathon001/ui.R",
+    "project_path" : "ui.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
