@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nchifun <- function(X)\n{\n  temp = t(count(X)[1])\n  testlist = as.list(temp)\n  names(testlist) = gsub(\"[0-9]\",\"\",temp)\n  testlist = testlist[order(names(testlist))]\n  return(testlist)\n}\n\nfind_ZIPCODE <- function(cordMAP)\n{\n  temp = as.list(cordMAP[,2])\n  names(temp) = cordMAP[,1]\n  temp = temp[order(names(temp))]\n  return(temp)\n}\n\n#Import cordinary data\nimport_cordData <- function()\n{\n  cordData = read.table(\"1050429UTF8.TXT\", header=T, sep=\"\\t\")\n  cordData = cordData[,-5]\n  names(cordData) = c(\"Reg\",\"Post\",\"cN\",\"cE\")\n  return(cordData)\n}\n#End of import\n\n#Import main data\nimport_regData <- function()\n{\n  main_Data_dir = \"PowerDataUTF8\"\n  mainData = data.frame()\n  \n  from_y = 104\n  to_y = 105\n  from_m = 1\n  to_m = 12\n  \n  for(i in from_y:to_y)\n  {\n    idy = sprintf(\"%03d\", i)\n    for(j in from_m:to_m)\n    {\n      idm = sprintf(\"%02d\", j)\n      f_Path = paste(main_Data_dir,\"/test-\",idy,idm,\".txt\",sep=\"\")\n      if(file.exists(f_Path))\n      {\n        temp = data.frame(read.table(f_Path, header=T, sep=\"\\t\"))\n        temp = temp[-nrow(temp),1:6]\n        mainData = rbind(mainData, temp)\n      }\n    }\n  }\n  mainData = mainData[order(mainData[,1]),]\n  mainData = mainData[!is.na(mainData[,6]),]\n  mainData = mainData[nchar(as.character(mainData[,1]))==3,]\n  mainData[,3] = gsub(\"\\t|\\u3000| \",\"\", mainData[,3])\n  return(mainData)\n}\n#End of import\n\nget_Levs <- function(X)\n{\n  return(count(X)[1])\n}\n\nget_Cost <- function(mainData, postLevs, cordMap)\n{\n  totalCost = data.frame()\n  for(i in 1:nrow(postLevs))\n  {\n    temp = data.frame(postLevs[i,],sum(mainData[mainData[,1]==postLevs[i,],6]))\n    totalCost = rbind(totalCost, temp)\n  }\n  totalCost = cbind(totalCost, data.frame(rep(0,nrow(totalCost)), rep(0,nrow(totalCost))))\n  names(totalCost) = c(\"ZIPCODE\", \"COST\", \"lon\", \"lat\")\n  \n  for(i in 1:nrow(totalCost))\n  {\n    testindex = cordMap[,2]==totalCost[i,1]\n    totalCost[i,3] = cordMap[testindex,3][1]\n    totalCost[i,4] = cordMap[testindex,4][1]\n  }\n  totalCost = totalCost[!is.na(totalCost$lon)&!is.na(totalCost$lat)&!is.na(totalCost$COST),]\n  return(totalCost)\n}\n#End of import",
+    "created" : 1470547975435.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3095776415",
+    "id" : "B9848D04",
+    "lastKnownWriteTime" : 1470532194,
+    "last_content_update" : 1470532194,
+    "path" : "C:/Users/KuangYu/Desktop/hackathon001/func.R",
+    "project_path" : "func.R",
+    "properties" : {
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

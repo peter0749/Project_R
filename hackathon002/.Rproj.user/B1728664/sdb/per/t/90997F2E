@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nshinyServer(function(input, output) {\n  \n  CostMap <- reactive({\n    index = input$ZIPCODE==cordData[,2]\n    input_center_lon = cordData[index,3][1]\n    input_center_lat = cordData[index,4][1]\n    \n    selectData = regData[regData[,3]==input$checkType,]\n    postLevs = get_Levs(selectData[,1])\n    totalCost = get_Cost(selectData,postLevs,cordData)\n    map <- get_map(location = c(input_center_lon,input_center_lat), zoom = input$center_zoom, maptype = \"roadmap\", language = \"zh-TW\")\n    return(list(map,totalCost))\n  })\n  \n  output$scatterMap <- renderPlot({\n    ggmap(CostMap()[[1]]) + geom_point(aes(x = lon, y = lat, size = COST), data = CostMap()[[2]], colour = \"red\", alpha=0.6)\n  }, height = 600, width = 800)\n  \n  output$denMap <- renderPlot({\n    ggmap(CostMap()[[1]]) + stat_density2d(\n      aes(x = lon, y = lat),\n      data = CostMap()[[2]]\n    )\n  }, height = 600, width = 800)\n  \n  output$pie_message <- renderUI({\n    HTML(\n      paste(\n        \"Note:\",\n        \"\\u4f4e\\u58d3\\u96fb\\u529b: \\u5c0f\\u578b\\u88fd\\u9020\\u696d\",\n        \"\\u9ad8\\uff06\\u7279\\u9ad8\\u58d3\\u96fb\\u529b: \\u5de5\\u696d\",\n        \"\\u8868\\u71c8\\u975e\\u71df\\u696d\\u7528: \\u6c11\\u751f\\u7528\\u96fb\",\n        \"\\u81e8\\u6642\\u7528\\u96fb: \\u81e8\\u6642\\u7528\\u96fb\",\n        \"\\u8868\\u71c8\\u71df\\u696d\\u7528: \\u5546\\u5bb6\\u7528\\u96fb\",\n        \"\\u4f4e\\u58d3\\u7d9c\\u5408\\u975e\\u71df\\u696d\\u7528\\u96fb: \\u516c\\u5171\\u8a2d\\u65bd\",\n        \"\\u4f4e\\u58d3\\u7d9c\\u5408\\u71df\\u696d\\u7528\\u96fb: \\u5546\\u5bb6\\u7528\\u96fb\",\n        sep=\"<br/>\"\n      )\n    )\n  })\n  \n  output$future <- renderPlot({\n    data = cbind(future_pred, future_pred[,2]-future_pred[,3])\n    data[,4] = scale(data[,4])\n    ggplot(data, aes(x=data[,1],y=data[,4])) + geom_bar(stat='identity',position='dodge') + xlab(\"Date\") + ylab(\"Variance(scaled)\")\n    \n  })\n  \n  output$checkType_pie <- renderPlot({\n    pieData = data.frame(\n      sum(regData[grepl(\"13\\u4f4e\\u58d3\\u96fb\\u529b\\u5c0f\\u8a08\",regData[,3]),6]),\n      sum(regData[grepl(\"16\\u9ad8\\uff06\\u7279\\u9ad8\\u58d3\\u96fb\\u529b\\u5c0f\\u8a08\",regData[,3]),6]),\n      sum(regData[grepl(\"1\\u8868\\u71c8\\u975e\\u71df\\u696d\\u7528\",regData[,3]),6]),\n      sum(regData[grepl(\"22\\u81e8\\u6642\\u7528\\u96fb\\u5c0f\\u8a08\",regData[,3]),6]),\n      sum(regData[grepl(\"2\\u8868\\u71c8\\u71df\\u696d\\u7528\",regData[,3]),6]),\n      sum(regData[grepl(\"6\\u4f4e\\u58d3\\u7d9c\\u5408\\u975e\\u71df\\u696d\\u7528\\u96fb\\u5c0f\\u8a08\",regData[,3]),6]),\n      sum(regData[grepl(\"9\\u4f4e\\u58d3\\u7d9c\\u5408\\u71df\\u696d\\u7528\\u96fb\\u5c0f\\u8a08\",regData[,3]),6])\n    )\n    names(pieData) = c(\n      \"\\u5c0f\\u578b\\u88fd\\u9020\\u696d\",\n      \"\\u5de5\\u696d\",\n      \"\\u6c11\\u751f\\u7528\\u96fb\",\n      \"\\u81e8\\u6642\\u7528\\u96fb\",\n      \"\\u5546\\u5bb6\\u7528\\u96fb\",\n      \"\\u516c\\u5171\\u8a2d\\u65bd\",\n      \"\\u5546\\u5bb6\\u7528\\u96fb\"\n    )\n    pie3D(t(pieData), labels=names(pieData), explode=0.05, main=\"\\u7528\\u96fb\\u6bd4\\u4f8b\\u5713\\u9905\\u5716\",\n          labelcex=1.2,col=c(\"blue\",\"red\",\"yellow\",\"lightgray\",\"darkgrey\",\"black\",\"green\")\n    )\n  })\n  \n})\n",
+    "created" : 1470547974397.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "2990198165",
+    "id" : "90997F2E",
+    "lastKnownWriteTime" : 1470563118,
+    "last_content_update" : 1470563118062,
+    "path" : "C:/Users/KuangYu/Desktop/hackathon001/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

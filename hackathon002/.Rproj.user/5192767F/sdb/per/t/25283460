@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nshinyServer(function(input, output) {\n  \n  CostMap <- reactive({\n    index = input$ZIPCODE==cordData[,2]\n    input_center_lon = cordData[index,3][1]\n    input_center_lat = cordData[index,4][1]\n    \n    selectData = regData[regData[,3]==input$checkType,]\n    postLevs = get_Levs(selectData[,1])\n    totalCost = get_Cost(selectData,postLevs,cordData)\n    map <- get_map(location = c(input_center_lon,input_center_lat), zoom = input$center_zoom, maptype = \"roadmap\", language = \"zh-TW\")\n    return(list(map,totalCost))\n  })\n  \n  output$scatterMap <- renderPlot({\n    ggmap(CostMap()[[1]]) + geom_point(aes(x = lon, y = lat, size = COST), data = CostMap()[[2]], colour = \"red\", alpha=0.6)\n  }, height = 600, width = 800)\n  \n  output$denMap <- renderPlot({\n    ggmap(CostMap()[[1]]) + stat_density2d(\n      aes(x = lon, y = lat),\n      data = CostMap()[[2]]\n    )\n  }, height = 600, width = 800)\n  \n})\n",
+    "created" : 1470495450066.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "863770408",
+    "id" : "25283460",
+    "lastKnownWriteTime" : 1470507765,
+    "last_content_update" : 1470507765107,
+    "path" : "~/fuckYUTF8/hackathon001/server.R",
+    "project_path" : "server.R",
+    "properties" : {
+    },
+    "relative_order" : 2,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
