@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls(all=TRUE))\nlibrary(plyr)\nlibrary(ggplot2)\nlibrary(ggmap)\nlibrary(mapproj)\nlibrary(grid)\nlibrary(shiny)\nlibrary(bitops)\nlibrary(plotrix)\nsource('func.R')\n\nctabel_preserve = read.csv(\"001.csv\",fileEncoding='big5')\nManPower <- read.csv(\"ManPower.csv\", fileEncoding = \"big5\")\n\nchiTPS <- function(X)\n{\n  temp = substring(X,first=0,last=3)\n  temp = t(count(temp)[1])\n  testlist = as.list(temp)\n  names(testlist) = temp\n  testlist = testlist[order(names(testlist))]\n  return(testlist)\n}\n\ndownload.file(\"http://data.taipower.com.tw/opendata/apply/file/d006007/%E5%8F%B0%E7%81%A3%E9%9B%BB%E5%8A%9B%E5%85%AC%E5%8F%B8_%E6%9C%AA%E4%BE%86%E4%B8%80%E9%80%B1%E9%9B%BB%E5%8A%9B%E4%BE%9B%E9%9C%80%E9%A0%90%E6%B8%AC.txt\",destfile=\"future.txt\")\nfuture_pred = read.csv(\"future.txt\", header=F, fileEncoding = \"utf8\")\n\ncordData = import_cordData()\n#saveRDS(cordData,\"cordData.RDS\")\n#cordData = readRDS(\"cordData.RDS\")\nregData = import_regData()\n#saveRDS(regData,\"regData.RDS\")\n#regData = readRDS(\"regData.RDS\")\nregTypeLev = get_Levs(regData[,3])",
+    "created" : 1470495504755.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3121342208",
+    "id" : "E250AA44",
+    "lastKnownWriteTime" : 1470661641,
+    "last_content_update" : 1470661641330,
+    "path" : "C:/Users/KUJeng/Desktop/hackathon004/global.R",
+    "project_path" : "global.R",
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 4,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
