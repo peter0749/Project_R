@@ -2,8 +2,8 @@ name: hackathon004
 account: peter0749
 server: shinyapps.io
 appId: 118925
-bundleId: 526674
+bundleId: 526693
 url: https://peter0749.shinyapps.io/hackathon004/
-when: 1470663422.9005
+when: 1470664402.8155
 asMultiple: FALSE
 asStatic: FALSE

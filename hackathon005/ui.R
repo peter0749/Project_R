@@ -59,7 +59,7 @@ shinyUI(navbarPage(
       )
   ),
   tabPanel(
-    "\u672a\u4f86\u4e00\u5468\u88ab\u8f09\u91cf\u6a19\u6e96\u5316",
+    "\u672a\u4f86\u4e00\u5468\u5099\u8f09\u5bb9\u91cf\u6a19\u6e96\u5316",
     mainPanel(
       plotOutput("future",width="100%")
     )
