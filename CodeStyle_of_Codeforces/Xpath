@@ -1,0 +1,17 @@
+#Xpath note
+#Get HighRank Members
+URL: http://codeforces.com/ratings/page/$N (N: page.num)
+Names: //div[2]/div[6]/table/tbody//tr/td[2]/a
+Ranking: //div[2]/div[6]/table/tbody//tr/td[4] (Note: Data with blank)
+
+#Get Member Contest List
+URL: http://codeforces.com/contests/with/$NAME (NAME: The name of one member)
+Contest List(URL): //div[3]/div[6]/table/tbody//tr/td[4]/a
+
+#Get Source codes from Contest Submit
+URL: http://codeforces.com/contest/$CONTEST/submission/$SUBMIT.NUM
+Needs SUBMIT.NUM: //div[4]/div[6]/table/tbody//tr/td[1]/a
+
+#Code content
+URL: http://codeforces.com/contest/$CONTEST.NUM/submission/$SUBMIT.NUM
+Content: //div[3]/pre[@class="prettyprint program-source"]//text()
