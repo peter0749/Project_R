@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "rm(list=ls(all=TRUE))\nlibrary(NLP)\nlibrary(tm)\nf2n <- function(X){ as.numeric(levels(X)[X]) } \nmember = readRDS('member.RDS')\nid_list = readRDS(\"id_list.RDS\")\ncon_list = readRDS('con_list.RDS')\ndir_prefix = './D_CODE'\ndir_range = 1:nrow(id_list)\nstyle_data = data.frame()\nfor(i in dir_range)\n{\n  totalSrc = Corpus(DirSource(paste(dir_prefix,member[i,1],sep='/')), list(language=NA))\n  totalSrc = matrix(unlist(totalSrc), nrow=length(totalSrc))\n  sig_newline = sum(grepl(pattern = '^\\\\{',x = totalSrc))\n  sig_right = sum(grepl(pattern='.\\\\{',x=totalSrc))\n  sig_newline_e = sum(grepl(pattern = '^\\\\{$',x = totalSrc))\n  sig_right_e = sum(grepl(pattern='.\\\\{$',x=totalSrc))\n  style_data = rbind(style_data, cbind(sig_newline,sig_newline_e,sig_right,sig_right_e))\n}\nstyle_vs_score = cbind(member[1:nrow(style_data),],style_data)\n\n",
+    "created" : 1477468368151.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1168934675",
+    "id" : "71A9FCF7",
+    "lastKnownWriteTime" : 1477395845,
+    "last_content_update" : 1477395845,
+    "path" : "C:/Users/KUJeng/Downloads/Project_R-master/CodeStyle_of_Codeforces/ana.R",
+    "project_path" : "ana.R",
+    "properties" : {
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
