@@ -1,7 +1,7 @@
 library(shiny)
 library('e1071')
 library(plyr)
-library(rgl)
+#library(rgl)
 library(scatterplot3d)
 source("./svm_pred.R")
 
