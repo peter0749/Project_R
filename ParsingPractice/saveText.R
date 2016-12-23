@@ -12,7 +12,7 @@ orgURL = 'https://tw.news.yahoo.com'
 for( i in 1:length(alldata$X))
 {
   yahooURL <- paste(orgURL, alldata$Path[i], sep='')
-  yahooURL <- iconv(yahooURL, "big5", "utf8")
+  #yahooURL <- iconv(yahooURL, "big5", "utf8")
   #Encoding(yahooURL) = "UTF-8"
   print(yahooURL)
   URLExist = url.exists(yahooURL)
