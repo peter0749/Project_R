@@ -1,8 +1,17 @@
 library(shiny)
-library('e1071')
-library(plyr)
+
+tryNinstall <- function(PakName=''){
+  if(require(PakName, character.only=T, quietly=T)){
+    print(paste('Okay, ',PakName,' is installed.',sep='',collapse=''))
+  }else{
+    print(paste('Trying to install ',PakName,'...',sep='',collapse=''))
+    install.packages(PakName)
+  }
+}
+tryNinstall('e1071')
+tryNinstall('plyr')
 #library(rgl)
-library(scatterplot3d)
+tryNinstall('scatterplot3d')
 source("./svm_pred.R")
 
 npval = 0.2
