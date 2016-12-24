@@ -1,0 +1,137 @@
+---
+title: "test"
+author: "test"
+date: "2016/12/24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+Sys.setenv("PKG_CXXFLAGS"="-fopenmp -std=c++11")
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+### R functions
+```{r}
+
+Rmandel = function(x=c(), y=c(), step){
+  #re = rep(0, length(x))
+  #img = rep(0, length(x))
+  nr = ni = img = re = 0L
+  for(i in y){
+    for(j in x){
+      for(k in 0:step){
+        nr=re*re;
+        ni=img*img;
+        if(nr+ni>4.0){
+          break
+        }
+        nr=nr-ni+j;
+        ni=re*img;
+        ni=ni+ni;
+        ni=ni+i;
+        if(ni==img&&nr==re){
+          break
+        }
+      }
+    }
+  }
+}
+```
+
+### Rcpp functions
+```{r engine='Rcpp'}
+#include <Rcpp.h>
+
+// [[Rcpp::export]]
+long double fibonacci(const int x) {
+    if(x<0) return -1;
+    long double f0=0.0f, f1=1.0f, t;
+    int i=x;
+    while(i--){
+      t = f0+f1;
+      f0 = f1;
+      f1 = t;
+    }
+    return f0;
+}
+
+// [[Rcpp::export]]
+double sum_parallel(Rcpp::NumericVector x)
+{
+  double sum = 0.0;
+  #pragma omp parallel for simd shared(x) reduction(+:sum)
+  for (int i=0; i<x.size(); i++)
+    sum += x[i];
+  
+  return sum;
+}
+
+// [[Rcpp::export]]
+double sum_serial(Rcpp::NumericVector x)
+{
+  double sum = 0.0;
+  for (int i=0; i<x.size(); i++)
+    sum += x[i];
+  
+  return sum;
+}
+
+int mandelbrot(const double x, const double y, const int step) {
+  double re=0, img=0, nr, ni;
+  for(int i=0; i<=step; ++i) {
+    nr=re*re;
+    ni=img*img;
+    if(nr+ni>4.0f) return 0;
+    nr=nr-ni+x;
+    ni=re*img;
+    ni+=ni;
+    ni+=y;
+    if(ni==img&&nr==re) return 1;
+  }
+  return 1;
+}
+
+// [[Rcpp::export]]
+void mandelbrot_set(Rcpp::NumericVector x, Rcpp::NumericVector y, int step){
+#pragma omp parallel for
+  for(int i=0; i<y.size(); ++i){
+    for(int j=0; j<x.size(); ++j){
+      mandelbrot(x[j], y[i], step);
+    }
+  }
+}
+```
+
+```{r}
+fibonacci(50L)
+testarr = sample(1:100000, 10000000, replace=T)
+xdot = ydot = 30
+bound = 80L
+x = runif(xdot, -2, 2)
+y = runif(ydot, -2, 2)
+print('Rcpp serial')
+system.time(sum_serial(testarr))
+print('Rcpp OMP')
+system.time(sum_parallel(testarr))
+print('R Built-in')
+system.time(sum(testarr))
+print('Rcpp Mandelbrot')
+system.time(mandelbrot_set(x, y, bound))
+print('R loop Mandelbrot')
+system.time(Rmandel(x,y,bound))
+```
+
+```{r results='asis'}
+library(googleVis)
+op <- options(gvis.plot.tag="chart")
+gvisMotionChart(Fruits, idvar="Fruit", timevar="Year")
+```
+
+```{python}
+print 'Hello, Python!'
+print 1+1
+```
+
+2+2 = `r 2+2`
