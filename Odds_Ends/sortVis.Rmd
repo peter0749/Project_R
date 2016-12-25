@@ -1,0 +1,72 @@
+---
+title: "sortVis"
+author: "Kuang-Yu Jeng"
+date: "2016/12/25"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r setOptions , message=FALSE}
+library(googleVis)
+op <- options(gvis.plot.tag="chart")
+```
+
+```{r engine='Rcpp'}
+#include <Rcpp.h>
+using namespace Rcpp;
+
+inline void PUSH_EVENT(NumericMatrix &record, NumericVector &arr, int Xlen, int x, int y, int &step, int limit){
+  if(step >= limit) return;
+  record(step, _) = arr;
+  record(step, Xlen) = x+1;
+  record(step, Xlen+1) = y+1;
+  record(step++, Xlen+2) = step;
+}
+
+// [[Rcpp::export]]
+SEXP insert_sort(SEXP X, bool dec=false, int N=10) {
+  int i, j, u, step=0;
+  NumericVector arr( X ) ;
+  int Xlen = arr.length();
+  NumericMatrix record(N, Xlen+3);
+  for(i=1; i<Xlen && step<N; ++i){
+        u = arr[i];
+        j = i-1;
+        while(j>=0  && step<N && dec?u>arr[j]:u<arr[j]){
+            arr[j+1] = arr[j];
+            PUSH_EVENT(record, arr, Xlen, j, j+1, step, N);
+            --j;
+        }
+        arr[j+1]=u;
+        PUSH_EVENT(record, arr, Xlen, -1, j+1, step, N);
+    }
+  return record;
+}
+```
+
+## R Markdown
+
+```{r, tidy=FALSE, results='asis'}
+num = 40
+ion = num*(num-1) / 2 + 1
+vec = sample(1:10000,size = num, replace = F)
+sorted = insert_sort(vec,N=ion)
+filter_index = sorted[,(num+2)]!=0
+sorted = sorted[filter_index,]
+data = data.frame()
+for(i in 1:num){
+  temp = data.frame(sorted[,i], rep(i,nrow(sorted)), sorted[,ncol(sorted)])
+  data = rbind(data, temp)
+}
+names(data) = c("Data","Index","Timeline")
+data$Timeline = sapply(data$Timeline, as.numeric)
+data$Timeline = data$Timeline+100
+
+data$Index <- formatC(data$Index,width=5,format="d",flag="0") 
+gvisMotionChart(data, 
+                       idvar="Index", 
+                       timevar="Timeline")
+```
