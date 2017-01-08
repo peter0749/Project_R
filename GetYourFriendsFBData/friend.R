@@ -1,4 +1,5 @@
 rm(list=ls(all=TRUE))
+library(Rfacebook)
 
 parser_id <- function(X) {
   s = substring(X,first=regexpr('id=',X)+3)
