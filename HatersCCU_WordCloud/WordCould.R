@@ -18,7 +18,7 @@ toSeg <- function(X,mixseg) {
   return(segment(as.character(X), jiebar=mixseg))
 }
 tok = '' # <- Here your Facebook token
-getPage(page = '1510948885828736',token = tok)
+#getPage(page = '1510948885828736',token = tok)
 text = getPage(page = '1510948885828736',token = tok, n=300)
 text = Corpus(VectorSource(text$message))
 text <- tm_map(text, removePunctuation)
