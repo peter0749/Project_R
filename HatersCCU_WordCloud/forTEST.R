@@ -38,17 +38,21 @@ plot_wordcloud <- function(text,mixseg) {
   
   wordcloud(countMat$totaldiff, countMat$freq, min.freq = 1.3, random.order = F, ordered.colors = T, 
             colors = rainbow(length(countMat$totaldiff)))
+  return(countMat)
 }
-topn = 100
+topn = 10
+pnum = 100
 pagen = 1000
 
 tok = '' # <- Here your Facebook token
 text = getPage(page = '',token = tok, n=pagen)
 postActive = as.vector(text[order(text$likes,decreasing=TRUE)[1:topn],7])
-postList = sapply(postActive, getPost, token=tok, n=topn)[[3]]
+postList = sapply(postActive, getPost, token=tok, n=pnum)
+postList = postList[[3]]
 mostRep = as.vector(text[order(text$comments_count,decreasing=TRUE)[1:topn],7])
-repList = sapply(mostRep, getPost, token=tok, n=topn)[[3]]
+repList = sapply(mostRep, getPost, token=tok, n=pnum)
+repList = repList[[3]]
 mixseg = worker()
-plot_wordcloud(text$message,mixseg)
-plot_wordcloud(postList$message,mixseg)
-plot_wordcloud(repList$message,mixseg)
+messAna <- plot_wordcloud(text$message,mixseg)
+mostLikeAna <- plot_wordcloud(postList$message,mixseg)
+mostRepAna <- plot_wordcloud(repList$message,mixseg)
